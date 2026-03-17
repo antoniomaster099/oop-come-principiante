@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+class termometro{
+    private:
+    vector <int> t;
+    public:
+    termometro(){
+    int n;
+  cout<<" quanti numeri vuoi mettere? \n";
+  cin>>n;
+  t.resize(n);
+  for(int i=0;i<t.size();i++){
+    cout<<"metti il "<<i+1<<" numero ";
+    cin>>t[i];
+  }
+    }
+    void media(){
+  float tot=0;
+  for(int i=0;i<t.size();i++){
+    tot+=t[i];
+  }
+  float media=tot/t.size();
+  cout<<" \nla media è di "<<media<<"\n";
+}
+
+void minimo(){
+auto min=min_element(t.begin(),t.end()); 
+cout<<"\nil minimo è "<<*min<<"\n";
+
+}
+void massimo(){
+  auto m=max_element(t.begin(),t.end());
+  cout<<"\nil massimo è"<<*m<<"\n ";
+
+
+}
+void compreso(){
+  int conta=0;
+  for(int i=0;i<t.size();i++){
+    if(t[i]>15 and t[i]<25){
+      conta++;
+    }
+  }
+  cout<<"i giorni in cui la temperatura era minore di quindici e maggiore di venticinque sono "<<conta;
+}
+};
+
+int main(){
+  termometro t;
+  int scelta;
+  cout<<" 1) per la media 2) per il minimo 3) per il massimo 4) per vedere i numeri compresi tra 15 e 25 0) per uscire";
+  cin>>scelta;
+  while(scelta!=0){
+  switch (scelta)
+  {
+  case 1:
+    t.media();
+    break;
+  case 2:
+  t.minimo();
+  break;
+  case 3:
+  t.massimo();
+  break;
+  case 0:
+  break;
+  case 4:
+  t.compreso();
+  break;
+  default:
+  cout<<" numero sbagliato";
+    break;
+  }
+  cin>>scelta;
+}
+}
